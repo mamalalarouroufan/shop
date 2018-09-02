@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shop.service.key.mapper.KeyMapper">
+
+	<select id="queryKeyList" resultType="com.shop.api.entity.key.Key">
+		<foreach collection="list" item="item" separator="union all">
+			SELECT 
+				max(${item.id}) id, 
+				'${item.tblName}' tblName
+			FROM 
+				${item.tblName}
+			<if test="item.machineCode != null and item.machineCode != ''">
+			 WHERE 
+			 	${item.id} like '${item.machineCode}%'
+			</if>
+		</foreach>
+	</select>
+
+	<select id="queryTblList" resultType="com.shop.api.entity.key.Key"
+		parameterType="java.lang.String">
+		<!-- oracle select cu.column_name id, cu.table_name tblName from user_cons_columns 
+			cu, user_constraints au, tabs t where cu.constraint_name = au.constraint_name 
+			and au.constraint_type = 'P' and au.table_name = t.table_name -->
+		<!-- MySQL -->
+		<!-- -->
+		select 
+			UPPER(t.table_name) tblName, 
+			c.column_name id 
+		from
+			information_schema.table_constraints as t join
+			information_schema.key_column_usage as c USING
+			(constraint_name,table_schema,table_name)
+		where 
+			t.table_schema = #{database} 
+		and t.constraint_type = 'PRIMARY KEY'
+
+	</select>
+
+</mapper>

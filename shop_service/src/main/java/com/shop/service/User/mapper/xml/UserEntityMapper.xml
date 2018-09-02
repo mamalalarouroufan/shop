@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shop.service.User.mapper.UserEntityMapper">
+	
+	<select id="getUserEntityByPhone" parameterType="java.lang.String" resultType="com.shop.api.entity.user.UserEntity">
+		SELECT
+			ID id,
+			NICK_NAME nickName,
+			NAME name,
+			PASSWORD password,
+			SEX sex,
+			PHONE phone,
+			SPARE_PHONE sparePhone,
+			PHONE_AREA phoneArea,
+			QQ QQ,
+			EMAIL email,
+			BIRTH_DAY birthDay,
+			REGISTER_DATE registerDate,
+			CERT_TYPE certType,
+			CERT_NUMBER certNumber,
+			IS_DEL isDel,
+			VERSION_NUM versionNum,
+			CREATE_USER_ID createUserId,
+			CREATE_TIME createTime,
+			UPDATE_USER_ID updateUserId,
+			UPDATE_TIME updateTime
+		FROM
+			S_USER_T
+		WHERE
+			PHONE=#{phone} AND IS_DEL=0
+	</select>
+	
+</mapper>

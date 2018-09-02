@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans   
+    http://www.springframework.org/schema/beans/spring-beans-4.1.xsd   
+    http://www.springframework.org/schema/tx   
+    http://www.springframework.org/schema/tx/spring-tx-4.1.xsd  
+    http://www.springframework.org/schema/context  
+    http://www.springframework.org/schema/context/spring-context-4.1.xsd  
+    http://www.springframework.org/schema/aop  
+   	http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+
+	<!-- 初始化方法：获取所有的主键id -->
+	<bean id="factoryAboutKey" class="com.shop.service.key.FactoryAboutKey" init-method="init">
+		<property name="keyService" ref="keyService" />
+		<property name="machineCode" value="${MACHINE_CODE}" />
+	</bean>
+
+	<bean id="keyService" class="com.shop.service.key.KeyServiceImpl">
+	</bean>
+
+</beans>    

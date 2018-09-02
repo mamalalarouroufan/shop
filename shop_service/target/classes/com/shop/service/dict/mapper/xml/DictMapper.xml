@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shop.service.dict.mapper.DictMapper">
+
+	<select id="getDictVoList" parameterType="java.lang.String"
+		resultType="com.shop.api.entity.dict.DictVo">
+		SELECT
+			DICT_CODE dictCode,
+			DICT_NAME dictName
+		FROM
+			g_bd_dict_cls_t dictcls
+			JOIN g_bd_dict_t dict ON dictcls.DICT_CLS_ID = dict.DICT_CLS_ID
+		WHERE
+			DICT_KEY = #{dictkey}
+		ORDER BY
+			dict.SHOW_NO;
+	</select>
+
+</mapper>
