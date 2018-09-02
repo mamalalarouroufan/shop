@@ -51,6 +51,11 @@ public class UserController extends BaseController{
 		return new WebEntity<UserEntity>(EnumError.SUCCESS,userEntityByPhone);
 	}
 	
+	/**
+	 * 保存用户
+	 * @param userEntity
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/user/saveUser", produces = { "application/json" })
 	public WebEntity<String> saveUser(UserEntity userEntity){
